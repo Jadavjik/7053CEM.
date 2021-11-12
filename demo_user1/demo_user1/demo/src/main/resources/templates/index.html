@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Fabrikam</title>
+    <meta charset = "ISO-8859-1" />
+       <link href="../static/css/main.css"
+          th:href="@{css/main.css}" rel="stylesheet" media="screen"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body style="background-color:#ffef9c;">
+<div align = "center">
+    <h1 style="font-family:Georgia, 'Times New Roman', Times, serif; font-size:60;">Fabrikam</h1>
+    <h2 style="font-family:Georgia, 'Times New Roman', Times, serif; font-size:40;">Dashboard</h2>
+    <h3>Register New User</h3>
+    <a href="/new_ftuser" style="color: #669900"> New Full-Time User Registration </a><br><br> 
+    <a href="/new_ptuser"style="color: #669900"> New Part-Time User Registration </a>
+    <br><br>
+    <table border = "" cellpadding = "8">
+        <thead>
+            <tr>
+                <th> Username </th>
+                <th> Email </th>
+                <th> Mode </th>
+                <th> Years Experience </th>
+                <th> Courses</th>
+                <th> Course Duration (Years) </th>
+                <th> Operations </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${ft_users.empty}">
+                <td colspan="7"style="text-align:center"> No Full-time Users Registered </td> 
+            </tr>
+            <tr th:each="ftuser : ${ft_users}">
+                <td><span th:text="${ftuser.username}"> </span></td>
+                <td><span th:text="${ftuser.email}"> </span></td>
+                <td><span th:text="${ftuser.dtype}"> </span></td>
+                <td><span th:text="${ftuser.grade}"> </span></td>
+                <td><span th:text="${ftuser.team}"> </span></td>
+                <td><span th:text="${ftuser.contract}"> </span></td>
+                <td>
+                    <a th:href="@{/edit_ftuser/{dtype}(dtype=${ftuser.dtype})}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/delete_ftuser/{username}(username=${ftuser.username})}">Delete</a>
+                </td>
+                </td>
+            </tr>
+
+            <tr th:if="${pt_users.empty}">
+                <td colspan="7"style="text-align:center"> No Part-time Users Registered </td> 
+            </tr>
+            <tr th:each="ptuser : ${pt_users}">
+                <td><span th:text="${ptuser.username}"> </span></td>
+                <td><span th:text="${ptuser.email}"> </span></td>
+                <td><span th:text="${ptuser.dtype}"> </span></td>
+                <td><span th:text="${ptuser.rate}"> </span></td>
+                <td><span th:text="${ptuser.team}"> </span></td>
+                <td><span th:text="${ptuser.contract}"> </span></td>
+                <td>
+                    <a th:href="@{/edit_ptuser/{dtype}(dtype=${ptuser.dtype})}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/delete_ptuser/{username}(username=${ptuser.username})}">Delete</a>
+                </td>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<br><br>
+<div align = "center">
+NOTES:<br>
+<b>Number of the full-time users: <label th:text="${ft_users.size()}"></label></b><br>
+<b>Number of the part-time users: <label th:text="${pt_users.size()}"></label></b>
+</div>
+
+<br><br>
+
+<div align = "center">
+    <table border = "" cellpadding = "8" bgcolor="#FFDB19">
+    <thead>
+        <caption><h1>Courses to Enhance Old Skills or Learn New Skills</h1></caption>
+        <tr>
+          <th>Course ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Department</th>
+          <th>Full-Time/ Part-Time</th>
+          <th>Price</th>
+        </tr>
+    </thead>
+        <tr>
+          <td>7055</td>
+          <td>CV Writing</td>
+          <td>Learn how to create and improve a CV over the course of 2 weeks</td>
+          <td>Writing Skills</td>
+          <td>Part-Time</td>
+          <td>£20</td>
+        </tr>
+        <tr>
+            <td>7056</td>
+            <td>Presentation</td>
+            <td>Learn how to create and present powerpoint presentations over the course of 2 weeks</td>
+            <td>Presentation Skills</td>
+            <td>Part-Time</td>
+            <td>£20</td>
+        </tr>
+        <tr>
+            <td>7057</td>
+            <td>Email Writing</td>
+            <td>Learn how to write up formal emails, over the course of 2 weeks</td>
+            <td>Email Skills</td>
+            <td>Part-Time</td>
+            <td>£20</td>
+        </tr>
+        <tr>
+            <td>7060</td>
+            <td>Microsoft Skills</td>
+            <td>Learn how about Microsoft Office and all the applications over the course of 6 weeks</td>
+            <td>Microsoft</td>
+            <td>Full-Time</td>
+            <td>£60</td>
+        </tr>
+        <tr>
+            <td>7061</td>
+            <td>Programming Language: Python</td>
+            <td>Learn the basics of Python over the course of 8 weeks</td>
+            <td>Python</td>
+            <td>Full-Time</td>
+            <td>£80</td>
+        </tr>
+        <tr>
+            <td>7062</td>
+            <td>Programming Language: Java</td>
+            <td>Learn how basics of Java over the course of 8 weeks</td>
+            <td>Java Skills</td>
+            <td>Full-Time</td>
+            <td>£80</td>
+        </tr>
+      </table>
+</div>
+</body>
+</html> 
